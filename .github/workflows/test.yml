@@ -3,13 +3,9 @@ name: ci
 on:
   workflow_dispatch:
   push:
-    branches:
-      - 'master'
     tags:
+      - 'latest'
       - 'v*'
-  pull_request:
-    branches:
-      - 'master'
 
 jobs:
   docker:
@@ -21,7 +17,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: name/app
+          images: tmh9x/react-tetris-image
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
